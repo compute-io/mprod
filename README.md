@@ -2,7 +2,7 @@ mprod
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes a moving product over a numeric array. 
+> Computes a moving product over a numeric array.
 
 
 ## Installation
@@ -16,19 +16,41 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
+To use the module,
+
 ``` javascript
-var foo = require( 'compute-mprod' );
+var mprod = require( 'compute-mprod' );
 ```
 
-#### foo( arr )
+#### mprod( arr, window )
 
-What does this function do?
+Slides a `window` over a numeric `array` to compute a moving product.
 
+``` javascript
+var data = [ 1, 2, 3, 4, 5 ];
+
+mprod( data, 2 );
+// returns [ 2, 6, 12, 20 ]
+```
+
+Note: the returned `array` has length `L - W + 1`, where `L` is the length of the input `array` and `W` is the `window` size.
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-mprod' );
+var mprod = require( 'compute-mprod' );
+
+// Simulate some data...
+var data = new Array( 100 );
+
+for ( var i = 0; i < data.length; i++ ) {
+	data[ i ] = Math.random() * 10 + 1;
+}
+
+// Compute the moving product:
+var arr = mprod( data, 7 );
+
+console.log( arr.join( '\n' ) );
 ```
 
 To run the example code from the top-level application directory,
@@ -36,7 +58,6 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
-
 
 ## Tests
 
@@ -69,7 +90,7 @@ $ make view-cov
 ---
 ## License
 
-[MIT license](http://opensource.org/licenses/MIT). 
+[MIT license](http://opensource.org/licenses/MIT).
 
 
 ## Copyright
