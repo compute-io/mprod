@@ -1,7 +1,7 @@
 {
   "name": "compute-mprod",
   "version": "0.0.0",
-  "description": "Computes a moving product over a numeric array. ",
+  "description": "Computes a moving product over an array. ",
   "author": {
     "name": "Philipp Burckhardt",
     "email": "pburckhardt@outlook.com"
@@ -10,6 +10,10 @@
     {
       "name": "Philipp Burckhardt",
       "email": "pburckhardt@outlook.com"
+    },
+    {
+      "name": "Athan Reines",
+      "email": "kgryte@gmail.com"
     }
   ],
   "scripts": {
@@ -31,18 +35,23 @@
     "statistics",
     "stats",
     "timeseries",
-    "sum",
+    "prod",
+    "product",
     "moving",
     "window",
-    "sliding"
+    "sliding",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/mprod/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-array": "^1.0.3",
+    "validate.io-positive-integer": "^1.0.0"
+  },
   "devDependencies": {
-    "chai": "1.x.x",
-    "mocha": "1.x.x",
+    "chai": "2.x.x",
+    "mocha": "2.x.x",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
     "jshint": "2.x.x",
