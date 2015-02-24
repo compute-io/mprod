@@ -1,8 +1,8 @@
-mprod
+Moving Product
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes a moving product over a numeric array.
+> Computes a moving product over an array.
 
 
 ## Installation
@@ -16,24 +16,42 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To use the module,
-
 ``` javascript
 var mprod = require( 'compute-mprod' );
 ```
 
-#### mprod( arr, window )
+#### mprod( arr, window[, accessor] )
 
-Slides a `window` over a numeric `array` to compute a moving product.
+Slides a `window` over an `array` to compute a moving product. For primitive `arrays`,
 
 ``` javascript
 var data = [ 1, 2, 3, 4, 5 ];
 
-mprod( data, 2 );
+var arr = mprod( data, 2 );
 // returns [ 2, 6, 12, 20 ]
 ```
 
-Note: the returned `array` has length `L - W + 1`, where `L` is the length of the input `array` and `W` is the `window` size.
+For object `arrays`, provide an accessor `function` for accessing `array` values
+
+``` javascript
+var data = [
+	{'x':1},
+	{'x':2},
+	{'x':3},
+	{'x':4},
+	{'x':5}
+];
+
+function getValue( d ) {
+	return d.x;
+}
+
+var arr = mprod( data, 2, getValue );
+// returns [ 2, 6, 12, 20 ]
+```
+
+__Note__: the returned `array` has length `L - W + 1`, where `L` is the length of the input `array` and `W` is the `window` size.
+
 
 ## Examples
 
@@ -42,11 +60,9 @@ var mprod = require( 'compute-mprod' );
 
 // Simulate some data...
 var data = new Array( 100 );
-
 for ( var i = 0; i < data.length; i++ ) {
-	data[ i ] = Math.random() * 10 + 1;
+	data[ i ] = Math.random()*10 + 1;
 }
-
 // Compute the moving product:
 var arr = mprod( data, 7 );
 
@@ -58,6 +74,7 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
 
 ## Tests
 
